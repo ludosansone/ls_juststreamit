@@ -1,0 +1,40 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+#top-frame {
+    background-color: green;
+    color: white;
+    margin-bottom: 20px;;
+}
+
+#top-frame p a {
+    color: white;
+    font-size: 1.25em;
+}
+
+#midle-frame {
+    border: black solid 5px;
+}
+
+#play-button {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px;
+}
+
+#film-image-frame {
+    text-align: center;
+}
+
+
+h2 {
+    text-align: center;
+}
+
+.film-thumbnail {
+    margin: 50px;
+}
