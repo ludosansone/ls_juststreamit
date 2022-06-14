@@ -34,7 +34,7 @@
             <p id="best-film-title">
                 Titre de la vidéo
             </p>
-            <button id="play-button">
+            <button class="play-button">
                 Play
             </button>
             <p id="film-description">
@@ -53,6 +53,12 @@
     <div style="display: flex; align-items: center;">
         <div style="flex: 1">
             <img id="previous-best-films" src="images/leftarrow.png" alt="Voir les films précédents" />
+        </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="best-films" src="" alt="image de film"/>
+        </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="best-films" src="" alt="image de film"/>
         </div>
         <div class="film-thumbnail" style="flex: 1">
             <img class="best-films" src="" alt="image de film"/>
@@ -97,6 +103,12 @@
         <div class="film-thumbnail" style="flex: 1">
             <img class="category1-films" src="" alt="image de film"/>
         </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="category1-films" src="" alt="image de film"/>
+        </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="category1-films" src="" alt="image de film"/>
+        </div>
         <div style="flex: 1">
             <img id="next-category1-films" src="images/rightarrow.png" alt="Voir les films suivants" />
         </div>
@@ -109,6 +121,12 @@
     <div style="display: flex; align-items: center;">
         <div style="flex: 1">
             <img id="previous-category2-films" src="images/leftarrow.png" alt="Voir les films précédents" />
+        </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="category2-films" src="" alt="image de film"/>
+        </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="category2-films" src="" alt="image de film"/>
         </div>
         <div class="film-thumbnail" style="flex: 1">
             <img class="category2-films" src="" alt="image de film"/>
@@ -153,10 +171,62 @@
         <div class="film-thumbnail" style="flex: 1">
             <img class="category3-films" src="" alt="image de film"/>
         </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="category3-films" src="" alt="image de film"/>
+        </div>
+        <div class="film-thumbnail" style="flex: 1">
+            <img class="category3-films" src="" alt="image de film"/>
+        </div>
         <div style="flex: 1">
             <img id="next-category3-films" src="images/rightarrow.png" alt="Voir les films suivants" />
         </div>
     </div>
-</body>
-<script src="js/index.js"></script>
+
+    <div id="modal" class="modal-box">
+        <div class="modal-content">
+            <button id="modal-close-button">
+                Fermer la Modale
+            </button>
+            <h1 id="modal-title"></h1>
+            <div style="display:flex; align-items: center;">
+                <div style="flex: 1;">
+                    <img id="modal-image" src="" alt=""/>
+                </div>
+                <div style="flex: 1;">
+                    <ul>
+                        <li id="modal-date-published">Date de sortie : </li>
+                        <li id="modal-duration">Durée : </li>
+                        <li id="modal-rated">Note : </li>
+                        <li id="modal-imdb-score">Score IMDB : </li>
+                        <li id="modal-countries">Pays d'Origine : </li>
+                        <li id="modal-metascore">Score au BoxOffice : </li>
+                    </ul>
+                </div>
+            </div>
+            <h2>
+                Résumé
+            </h2>
+            <div id="modal-description"></div>
+            <h2>
+                Genres
+            </h2>
+            <ul id="modal-genres"></ul>
+
+            <h2>
+                Réalisateurs
+            </h2>
+            <ul id="modal-directors"></ul>
+
+            <h2>
+                Acteurs
+            </h2>
+            <ul id="modal-actors"></ul>
+
+            
+
+        </div>
+    </div>
+    </body>
+    <script src="js/index.js"></script>
+    
 </html>
