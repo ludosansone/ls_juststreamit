@@ -1,7 +1,7 @@
 // Variables globales au script
 let rootURL = "http://localhost:8000/api/v1/titles"
 let urlStarFilm = rootURL + "?sort_by=-imdb_score&page_size=1"
-let urlBestFilm = rootURL + "?sort_by=-imdb_score&page_size=7"
+let urlBestFilm = rootURL + "?sort_by=-imdb_score&page_size=8"
 let urlCategory1 = "http://localhost:8000/api/v1/titles?genre=thriller&sort_by=-imdb_score&page_size=7"
 let urlCategory2 = "http://localhost:8000/api/v1/titles?genre=animation&sort_by=-imdb_score&page_size=7"
 let urlCategory3 = "http://localhost:8000/api/v1/titles?genre=music&sort_by=-imdb_score&page_size=7"
@@ -24,6 +24,7 @@ let previousCategory3Films = document.getElementById('previous-category3-films')
 let nextCategory3Films = document.getElementById('next-category3-films')
 let modal = document.getElementById('modal')
 let closeModalButton = document.getElementById('modal-close-button')
+let remainingMovie = null
 
 
 
@@ -31,9 +32,7 @@ let closeModalButton = document.getElementById('modal-close-button')
 // Gestionnaires d'événements
 playButton[0].addEventListener('click', async (event) => {
     await pushModal(event)
-    
 })
-
 
 closeModalButton.addEventListener('click', (event) => {
     modal.style.display = "none"
@@ -44,8 +43,9 @@ previousBestFilms.addEventListener('click', async (event) => {
     if (response.previous != null) {
         urlBestFilm = response.previous
         response = await getPage(urlBestFilm)
-        refreshFilmsScreen(response, bestFilms, 0)
+        refreshFilmsScreen(response, bestFilms, 1)
     }
+    remainingMovie = response.results[7]
 })
 
 nextBestFilms.addEventListener('click', async (event) => {
@@ -55,6 +55,7 @@ nextBestFilms.addEventListener('click', async (event) => {
         response = await getPage(urlBestFilm)
         refreshFilmsScreen(response, bestFilms, 0)
     }
+    remainingMovie = response.results[7]
 })
 
 previousCategory1Films.addEventListener('click', async (event) => {
@@ -128,6 +129,14 @@ async function getPage(url) {
 
 async function refreshFilmsScreen(response, components, begin) {
     i = 0
+
+    if ((response.length == 8) && (response.previous != null)) {
+        components[i].id = remainingMovie.id
+        components[i].src = remainingMovie.image_url
+        components[i].alt = remainingMovie.title
+        i = 1
+    }
+
     while (i < 7) {
         components[i].id = response.results[begin].id
         components[i].src = response.results[begin].image_url
@@ -225,6 +234,7 @@ function createEventListeners() {
 (async function main() {
     createEventListeners()
 
+    // On récupère le film le mieux noté
     startFilm = await getPage(urlStarFilm)
     
     // On récupère la première page des films les mieux notés
@@ -251,7 +261,8 @@ function createEventListeners() {
     bestFilmImage.alt = "Image du film " + details.title
 
     // On actualise la section des films les mieux notés
-    await refreshFilmsScreen(listFilms, bestFilms, 0)
+    await refreshFilmsScreen(listFilms, bestFilms, 1)
+    remainingMovie = listFilms.results[7]
 
     // On actualise la section des films de la catégorie 1
     await refreshFilmsScreen(listCategory1Films, category1Films, 0)
